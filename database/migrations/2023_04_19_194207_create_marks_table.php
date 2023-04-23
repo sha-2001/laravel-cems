@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+
         Schema::create('marks', function (Blueprint $table) {
             $table->id('entry');
             $table->unsignedBigInteger('user_id'); // Use unsignedBigInteger instead of foreign() method
@@ -22,6 +23,8 @@ return new class extends Migration
             $table->tinyInteger('resolution');
             $table->tinyInteger('querry');
             $table->tinyInteger('closing');
+            $table->string('phone')->nullable();
+            $table->boolean('is_call');
             $table->smallInteger('total');
             $table->timestamps();
         });

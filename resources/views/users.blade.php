@@ -8,16 +8,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <style>
-        td:hover{
+        td:hover {
             background-color: rgb(237, 235, 235)
         }
-        td{
+
+        td {
             cursor: pointer;
         }
     </style>
 </head>
 
 <body>
+    {{-- -------------------------------  SUCCESS MESSAGE----------------------------- --}}
+    @if (session('success'))
+        <div id='success-message' class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="container mt-3">
         <h2 class="text-center mb-3">Customer Call Executive Agents</h2>
         <table id="users-table">
@@ -38,6 +46,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+    {{-- to fetch users from database --}}
     <script>
         $(document).ready(function() {
             var usersTable = $('#users-table').DataTable();
@@ -56,6 +65,12 @@
 
             usersTable.draw(false);
         });
+    </script>
+    {{-- to fade out alert messafe --}}
+    <script>
+        setTimeout(function() {
+            $('#success-message').fadeOut('fast');
+        }, 3000);
     </script>
 </body>
 
